@@ -4,7 +4,7 @@ import { useState } from 'react';
 import Link from 'next/link';
 import { useRouter } from 'next/navigation';
 import { Scale, Eye, EyeOff, AlertCircle } from 'lucide-react';
-import api from '@/lib/api';
+import { signIn } from 'next-auth/react';
 
 export default function LoginPage() {
   const router = useRouter();
@@ -18,13 +18,19 @@ export default function LoginPage() {
     setLoading(true);
     setError('');
     try {
-      const res = await api.post('/login', form);
-      localStorage.setItem('token', res.data.access_token);
-      localStorage.setItem('user', JSON.stringify(res.data.user));
-      router.push('/dashboard');
-    } catch (err: unknown) {
-      const axiosErr = err as { response?: { data?: { message?: string; errors?: { email?: string[] } } } };
-      setError(axiosErr?.response?.data?.errors?.email?.[0] || axiosErr?.response?.data?.message || 'Email atau password salah.');
+      const res = await signIn('credentials', {
+        redirect: false,
+        email: form.email,
+        password: form.password,
+      });
+
+      if (res?.error) {
+        setError(res.error);
+      } else {
+        router.push('/dashboard');
+      }
+    } catch (err) {
+      setError('Terjadi kesalahan. Silakan coba lagi.');
     } finally {
       setLoading(false);
     }

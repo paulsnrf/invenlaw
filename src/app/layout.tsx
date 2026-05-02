@@ -10,10 +10,16 @@ export const metadata: Metadata = {
   description: "Platform template dokumen hukum digital terlengkap di Indonesia. Akses seumur hidup dengan satu kali pembayaran.",
 };
 
+import { AuthProvider } from "@/components/AuthProvider";
+
 export default function RootLayout({ children }: { children: React.ReactNode }) {
   return (
     <html lang="id" className={`${inter.variable} ${syne.variable}`}>
-      <body className="min-h-screen flex flex-col">{children}</body>
+      <body className="min-h-screen flex flex-col">
+        <AuthProvider>
+          {children}
+        </AuthProvider>
+      </body>
     </html>
   );
 }

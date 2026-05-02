@@ -4,7 +4,7 @@ import { useState } from 'react';
 import Link from 'next/link';
 import { useRouter } from 'next/navigation';
 import { Scale, Eye, EyeOff, AlertCircle } from 'lucide-react';
-import api from '@/lib/api';
+import { signIn } from 'next-auth/react';
 
 export default function RegisterPage() {
   const router = useRouter();
@@ -17,14 +17,41 @@ export default function RegisterPage() {
     e.preventDefault();
     setLoading(true);
     setErrors({});
+
+    if (form.password !== form.password_confirmation) {
+      setErrors({ password: ['Password konfirmasi tidak cocok.'] });
+      setLoading(false);
+      return;
+    }
+
     try {
-      const res = await api.post('/register', form);
-      localStorage.setItem('token', res.data.access_token);
-      localStorage.setItem('user', JSON.stringify(res.data.user));
-      router.push('/dashboard');
-    } catch (err: unknown) {
-      const axiosErr = err as { response?: { data?: { errors?: Record<string, string[]> } } };
-      setErrors(axiosErr?.response?.data?.errors || {});
+      const res = await fetch('/api/auth/register', {
+        method: 'POST',
+        headers: { 'Content-Type': 'application/json' },
+        body: JSON.stringify({ name: form.name, email: form.email, password: form.password }),
+      });
+
+      const data = await res.json();
+
+      if (!res.ok) {
+        setErrors({ email: [data.message || 'Terjadi kesalahan'] });
+        return;
+      }
+
+      // Auto login after successful registration
+      const signInRes = await signIn('credentials', {
+        redirect: false,
+        email: form.email,
+        password: form.password,
+      });
+
+      if (signInRes?.error) {
+        setErrors({ email: [signInRes.error] });
+      } else {
+        router.push('/dashboard');
+      }
+    } catch (err) {
+      setErrors({ email: ['Gagal menghubungi server. Silakan coba lagi.'] });
     } finally {
       setLoading(false);
     }
