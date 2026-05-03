@@ -3,9 +3,9 @@ import prisma from "@/lib/prisma";
 import { getServerSession } from "next-auth";
 import { authOptions } from "@/lib/auth";
 
-export async function GET(request: Request, { params }: { params: { id: string } }) {
+export async function GET(request: Request, { params }: { params: Promise<{ id: string }> }) {
   try {
-    const templateId = params.id;
+    const { id: templateId } = await params;
 
     // We can fetch by slug or ID. The frontend seems to use slug or ID depending on routing.
     // Let's assume it searches by ID or slug. We'll search by slug first, then fallback to ID.
