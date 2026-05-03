@@ -1,30 +1,38 @@
 import Link from 'next/link';
-import { Scale } from 'lucide-react';
+import Image from 'next/image';
+import { useDictionary } from '@/components/DictionaryProvider';
 
 export default function Footer() {
+  const { dict, lang } = useDictionary();
   return (
     <footer className="border-t border-white/[0.06] mt-auto" style={{ background: '#111' }}>
       <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 py-10">
         <div className="flex flex-col lg:flex-row gap-8 lg:gap-16 items-start">
           {/* Brand */}
           <div className="flex-1 max-w-sm">
-            <Link href="/" className="flex items-center gap-2.5 mb-4">
-              <div className="w-9 h-9 rounded-xl flex items-center justify-center"
-                style={{ background: 'linear-gradient(135deg, #FF6B00, #FF8C00)' }}>
-                <Scale className="w-5 h-5 text-white" />
-              </div>
-              <span className="font-bold text-lg" style={{ fontFamily: 'var(--font-syne)' }}>Invenlaw</span>
+            <Link href={`/${lang}`} className="flex items-center mb-4">
+              <Image
+                src="/inven.svg"
+                alt="Invenlaw"
+                width={110}
+                height={110}
+                className="h-[110px] w-auto"
+              />
             </Link>
             <p className="text-xs text-white/40 leading-relaxed">
-              Platform template dokumen hukum digital terlengkap di Indonesia. Satu kali bayar, akses seumur hidup.
+              {dict.footer.desc}
             </p>
           </div>
 
           {/* Links */}
           <div>
-            <h4 className="text-xs font-bold text-white/60 uppercase tracking-widest mb-3">Navigasi</h4>
+            <h4 className="text-xs font-bold text-white/60 uppercase tracking-widest mb-3">{dict.footer.nav}</h4>
             <ul className="space-y-2">
-              {[['/', 'Beranda'], ['/templates', 'Template'], ['/pricing', 'Harga']].map(([href, label]) => (
+              {[
+                [`/${lang}`, dict.nav.home], 
+                [`/${lang}/templates`, dict.nav.templates], 
+                [`/${lang}/pricing`, dict.nav.pricing]
+              ].map(([href, label]) => (
                 <li key={href}>
                   <Link href={href} className="text-xs text-white/40 hover:text-orange-400 transition-colors">{label}</Link>
                 </li>
@@ -33,9 +41,13 @@ export default function Footer() {
           </div>
 
           <div>
-            <h4 className="text-xs font-bold text-white/60 uppercase tracking-widest mb-3">Legal</h4>
+            <h4 className="text-xs font-bold text-white/60 uppercase tracking-widest mb-3">{dict.footer.legal}</h4>
             <ul className="space-y-2">
-              {[['#', 'Kebijakan Privasi'], ['#', 'Syarat & Ketentuan'], ['#', 'Hubungi Kami']].map(([href, label]) => (
+              {[
+                ['#', dict.footer.privacy], 
+                ['#', dict.footer.terms], 
+                ['#', dict.footer.contact]
+              ].map(([href, label]) => (
                 <li key={label}>
                   <Link href={href} className="text-xs text-white/40 hover:text-orange-400 transition-colors">{label}</Link>
                 </li>
@@ -46,7 +58,7 @@ export default function Footer() {
 
         <div className="mt-10 pt-6 border-t border-white/[0.04] flex flex-col md:flex-row justify-between items-center gap-4">
           <p className="text-[10px] uppercase tracking-widest text-white/20">
-            &copy; {new Date().getFullYear()} Invenlaw. All rights reserved.
+            &copy; {new Date().getFullYear()} Invenlaw. {dict.footer.rights}
           </p>
           <div className="flex items-center gap-4">
             {/* X (Twitter) */}

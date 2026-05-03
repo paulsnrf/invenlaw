@@ -1,0 +1,42 @@
+{
+  "nav": {
+    "home": "Home",
+    "templates": "Templates",
+    "pricing": "Pricing",
+    "login": "Login",
+    "register": "Sign Up Free"
+  },
+  "footer": {
+    "desc": "The most complete digital legal document template platform in Indonesia. Pay once, lifetime access.",
+    "nav": "Navigation",
+    "legal": "Legal",
+    "privacy": "Privacy Policy",
+    "terms": "Terms & Conditions",
+    "contact": "Contact Us",
+    "rights": "All rights reserved."
+  },
+  "home": {
+    "hero_badge": "Lifetime Access",
+    "hero_title": "Professional",
+    "hero_title_highlight": "Legal Templates",
+    "hero_desc": "Get lifetime access to a complete collection of high-quality legal document templates. From business agreements to personal needs.",
+    "hero_cta1": "View Templates",
+    "hero_cta2": "View Pricing",
+    "features_title": "Why Choose",
+    "features_title_highlight": "Invenlaw?",
+    "f1_title": "Complete Collection",
+    "f1_desc": "Hundreds of ready-to-use templates for your business and personal legal needs.",
+    "f2_title": "Regular Updates",
+    "f2_desc": "Access to new templates added every month at no extra cost.",
+    "f3_title": "Pay Once",
+    "f3_desc": "No monthly subscription fees. Pay once, access is valid forever.",
+    "categories_title": "Popular",
+    "categories_title_highlight": "Categories",
+    "categories_view_all": "View All",
+    "categories_items_count": "templates",
+    "cta_badge": "Premium Access",
+    "cta_title": "Start Protecting Your Business",
+    "cta_desc": "Join hundreds of other users who have already used Invenlaw.",
+    "cta_btn": "Register Now"
+  }
+}

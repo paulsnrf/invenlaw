@@ -30,11 +30,26 @@ const testimonials = [
   { name: 'Dr. Budi Santoso', role: 'Dosen Hukum', text: 'Saya merekomendasikan Invenlaw kepada mahasiswa saya. Template-nya sesuai standar dan sangat edukatif.' },
 ];
 
-export default function Home() {
+const bgImages = [
+  '/invenlaw.webp',
+  '/invenlaw-2.webp',
+  '/invenlaw-3.webp',
+  '/invenlaw-4.webp'
+];
+
+export default function HomeClient({ dict, lang }: { dict: any, lang: string }) {
   const [categories, setCategories] = useState<Category[]>([]);
+  const [currentBg, setCurrentBg] = useState(0);
 
   useEffect(() => {
-    api.get('/templates/categories').then(r => setCategories(r.data)).catch(() => {});
+    api.get('/categories').then(r => setCategories(r.data)).catch(() => { });
+  }, []);
+
+  useEffect(() => {
+    const timer = setInterval(() => {
+      setCurrentBg((prev) => (prev + 1) % bgImages.length);
+    }, 5000);
+    return () => clearInterval(timer);
   }, []);
 
   return (
@@ -42,10 +57,26 @@ export default function Home() {
       <Navbar />
 
       {/* HERO */}
-      <section className="relative min-h-screen flex items-center overflow-hidden pt-16"
-        style={{ background: 'linear-gradient(135deg, #0a0a0a 0%, #111 50%, #0a0a0a 100%)' }}>
+      <section className="relative min-h-screen flex items-center overflow-hidden pt-16 bg-[#0a0a0a]">
+        
+        {/* Background Image Slider */}
+        {bgImages.map((src, index) => (
+          <div 
+            key={src}
+            className={`absolute inset-0 transition-opacity duration-1000 ${index === currentBg ? 'opacity-100' : 'opacity-0'}`}
+            style={{ 
+              backgroundImage: `url(${src})`, 
+              backgroundSize: 'cover', 
+              backgroundPosition: 'center',
+            }} 
+          />
+        ))}
+
+        {/* Overlay Gradients to blend images with the dark theme */}
+        <div className="absolute inset-0 bg-gradient-to-b from-[#0a0a0a]/80 via-[#111]/40 to-[#0a0a0a] pointer-events-none" />
+
         {/* Glow */}
-        <div className="absolute top-1/3 left-1/2 -translate-x-1/2 -translate-y-1/2 w-[600px] h-[600px] rounded-full pointer-events-none"
+        <div className="absolute top-1/3 left-1/2 -translate-x-1/2 -translate-y-1/2 w-[600px] h-[600px] rounded-full pointer-events-none opacity-60"
           style={{ background: 'radial-gradient(circle, rgba(255,107,0,0.12) 0%, transparent 70%)' }} />
         {/* Grid */}
         <div className="absolute inset-0 pointer-events-none"
@@ -54,35 +85,38 @@ export default function Home() {
         <div className="relative max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 py-20 lg:py-32 text-center">
           <span className="inline-flex items-center px-3 py-1 text-xs font-semibold rounded-full mb-8"
             style={{ background: 'rgba(255,107,0,0.1)', color: '#FF8C00', border: '1px solid rgba(255,107,0,0.2)' }}>
-            ⚖️ Platform Legal-Tech #1 Indonesia
+            ⚖️ {dict.home.hero_badge}
           </span>
 
           <h1 className="text-4xl md:text-6xl lg:text-7xl font-bold leading-tight mb-6"
             style={{ fontFamily: 'var(--font-syne)' }}>
-            Dokumen Hukum{' '}
-            <span style={{ background: 'linear-gradient(135deg, #FF6B00, #FF8C00, #FFB74D)', WebkitBackgroundClip: 'text', WebkitTextFillColor: 'transparent' }}>
-              Profesional
+            <span style={{ textShadow: '0 2px 8px rgba(0,0,0,0.8)' }}>
+              {dict.home.hero_title}{' '}
             </span>
-            <br />Satu Klik
+            <span style={{ background: 'linear-gradient(135deg, #FF6B00, #FF8C00, #FFB74D)', WebkitBackgroundClip: 'text', WebkitTextFillColor: 'transparent', filter: 'drop-shadow(0 2px 8px rgba(0,0,0,0.8))' }}>
+              {dict.home.hero_title_highlight}
+            </span>
           </h1>
 
-          <p className="text-lg text-white/50 max-w-2xl mx-auto mb-10 leading-relaxed">
-            Template dokumen hukum digital terlengkap di Indonesia. Bayar sekali, akses selamanya.
+          <p className="text-lg text-white/70 max-w-2xl mx-auto mb-10 leading-relaxed"
+            style={{ textShadow: '0 2px 4px rgba(0,0,0,0.8)' }}>
+            {dict.home.hero_desc}
           </p>
 
           <div className="flex flex-col sm:flex-row gap-4 justify-center">
-            <Link href="/pricing"
+            <Link href={`/${lang}/pricing`}
               className="inline-flex items-center justify-center gap-2 px-8 py-4 text-base font-semibold text-white rounded-xl transition-all hover:-translate-y-1"
               style={{ background: 'linear-gradient(135deg, #FF6B00, #FF8C00)', boxShadow: '0 4px 30px rgba(255,107,0,0.4)' }}>
-              Akses Sekarang <ArrowRight className="w-5 h-5" />
+              {dict.home.hero_cta2} <ArrowRight className="w-5 h-5" />
             </Link>
-            <Link href="/templates"
+            <Link href={`/${lang}/templates`}
               className="inline-flex items-center justify-center gap-2 px-8 py-4 text-base font-semibold rounded-xl border border-white/10 text-white/80 hover:text-white hover:border-white/20 hover:-translate-y-1 transition-all">
-              Lihat Template
+              {dict.home.hero_cta1}
             </Link>
           </div>
 
-          <div className="mt-14 flex items-center justify-center gap-8 text-sm text-white/50">
+          <div className="mt-14 flex items-center justify-center gap-8 text-sm text-white/70"
+            style={{ textShadow: '0 2px 4px rgba(0,0,0,0.8)' }}>
             {['30+ Template', 'Lifetime Access', 'DOCX & PDF'].map(item => (
               <div key={item} className="flex items-center gap-2">
                 <CheckCircle className="w-4 h-4 text-orange-500" />
@@ -98,9 +132,8 @@ export default function Home() {
         <div className="max-w-7xl mx-auto">
           <div className="text-center mb-16">
             <h2 className="text-3xl md:text-5xl font-bold mb-4" style={{ fontFamily: 'var(--font-syne)' }}>
-              Mengapa Invenlaw?
+              {dict.home.features_title} <span className="text-orange-400">{dict.home.features_title_highlight}</span>
             </h2>
-            <p className="text-white/50 text-lg max-w-xl mx-auto">Semua yang Anda butuhkan untuk urusan dokumen hukum, tersedia dalam satu platform.</p>
           </div>
           <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-6">
             {features.map((f, i) => (
@@ -124,13 +157,12 @@ export default function Home() {
           <div className="max-w-7xl mx-auto">
             <div className="text-center mb-16">
               <h2 className="text-3xl md:text-5xl font-bold mb-4" style={{ fontFamily: 'var(--font-syne)' }}>
-                Kategori Template
+                {dict.home.categories_title} <span className="text-orange-400">{dict.home.categories_title_highlight}</span>
               </h2>
-              <p className="text-white/50 text-lg">Temukan template sesuai kebutuhan hukum Anda</p>
             </div>
             <div className="grid grid-cols-1 md:grid-cols-2 gap-6 max-w-4xl mx-auto">
               {categories.map(cat => (
-                <Link key={cat.id} href={`/templates?category=${cat.slug}`}
+                <Link key={cat.id} href={`/${lang}/templates?category=${cat.slug}`}
                   className="group p-8 rounded-2xl border border-white/[0.06] hover:border-orange-500/20 transition-all hover:-translate-y-1"
                   style={{ background: 'rgba(22,22,22,0.8)' }}>
                   <div className="flex items-start justify-between mb-6">
@@ -148,7 +180,7 @@ export default function Home() {
                   <h3 className="text-xl font-bold mb-2 group-hover:text-orange-400 transition-colors">{cat.name}</h3>
                   <p className="text-sm text-white/40">{cat.description}</p>
                   <div className="mt-6 flex items-center text-sm text-orange-400 font-medium gap-1">
-                    Lihat Semua <ArrowRight className="w-4 h-4 group-hover:translate-x-1 transition-transform" />
+                    {dict.home.categories_view_all} <ArrowRight className="w-4 h-4 group-hover:translate-x-1 transition-transform" />
                   </div>
                 </Link>
               ))}
@@ -200,15 +232,15 @@ export default function Home() {
               style={{ background: 'radial-gradient(ellipse, rgba(255,107,0,0.15) 0%, transparent 70%)' }} />
             <div className="relative">
               <h2 className="text-3xl lg:text-5xl font-bold mb-4" style={{ fontFamily: 'var(--font-syne)' }}>
-                Siap Mulai?
+                {dict.home.cta_title}
               </h2>
               <p className="text-white/50 max-w-lg mx-auto mb-8">
-                Bayar sekali, akses semua template selamanya. Tidak ada biaya langganan bulanan.
+                {dict.home.cta_desc}
               </p>
-              <Link href="/pricing"
+              <Link href={`/${lang}/pricing`}
                 className="inline-flex items-center gap-2 px-10 py-4 text-lg font-semibold text-white rounded-xl transition-all hover:-translate-y-1"
                 style={{ background: 'linear-gradient(135deg, #FF6B00, #FF8C00)', boxShadow: '0 4px 30px rgba(255,107,0,0.4)' }}>
-                Beli Sekarang <ArrowRight className="w-5 h-5" />
+                {dict.home.cta_btn} <ArrowRight className="w-5 h-5" />
               </Link>
               <p className="mt-4 text-xs text-white/20">Satu kali pembayaran • Akses seumur hidup • Garansi 30 hari</p>
             </div>

@@ -1,0 +1,42 @@
+{
+  "nav": {
+    "home": "Beranda",
+    "templates": "Template",
+    "pricing": "Harga",
+    "login": "Masuk",
+    "register": "Daftar Gratis"
+  },
+  "footer": {
+    "desc": "Platform template dokumen hukum digital terlengkap di Indonesia. Satu kali bayar, akses seumur hidup.",
+    "nav": "Navigasi",
+    "legal": "Legal",
+    "privacy": "Kebijakan Privasi",
+    "terms": "Syarat & Ketentuan",
+    "contact": "Hubungi Kami",
+    "rights": "All rights reserved."
+  },
+  "home": {
+    "hero_badge": "Lifetime Access",
+    "hero_title": "Template Hukum",
+    "hero_title_highlight": "Profesional",
+    "hero_desc": "Dapatkan akses seumur hidup ke koleksi lengkap template dokumen hukum berkualitas tinggi. Mulai dari perjanjian bisnis hingga kebutuhan personal.",
+    "hero_cta1": "Lihat Template",
+    "hero_cta2": "Lihat Harga",
+    "features_title": "Mengapa Memilih",
+    "features_title_highlight": "Invenlaw?",
+    "f1_title": "Koleksi Terlengkap",
+    "f1_desc": "Ratusan template siap pakai untuk berbagai kebutuhan hukum bisnis dan personal Anda.",
+    "f2_title": "Update Berkala",
+    "f2_desc": "Akses ke template baru yang ditambahkan setiap bulannya tanpa biaya tambahan.",
+    "f3_title": "Sekali Bayar",
+    "f3_desc": "Tidak ada biaya berlangganan bulanan. Bayar sekali, akses berlaku selamanya.",
+    "categories_title": "Kategori",
+    "categories_title_highlight": "Populer",
+    "categories_view_all": "Lihat Semua",
+    "categories_items_count": "template",
+    "cta_badge": "Akses Premium",
+    "cta_title": "Mulai Lindungi Bisnis Anda",
+    "cta_desc": "Bergabunglah dengan ratusan pengguna lain yang telah menggunakan Invenlaw.",
+    "cta_btn": "Daftar Sekarang"
+  }
+}
