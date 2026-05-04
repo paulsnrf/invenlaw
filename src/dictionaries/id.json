@@ -4,7 +4,8 @@
     "templates": "Template",
     "pricing": "Harga",
     "login": "Masuk",
-    "register": "Daftar Gratis"
+    "register": "Daftar Gratis",
+    "account": "Akun Saya"
   },
   "footer": {
     "desc": "Platform template dokumen hukum digital terlengkap di Indonesia. Satu kali bayar, akses seumur hidup.",
@@ -38,5 +39,84 @@
     "cta_title": "Mulai Lindungi Bisnis Anda",
     "cta_desc": "Bergabunglah dengan ratusan pengguna lain yang telah menggunakan Invenlaw.",
     "cta_btn": "Daftar Sekarang"
+  },
+  "profile": {
+    "title": "Akun Saya",
+    "subtitle": "Kelola informasi profil dan pengaturan akun Anda.",
+    "info_title": "Informasi Profil",
+    "premium_badge": "Premium Member",
+    "registered_at": "Terdaftar",
+    "form": {
+      "full_name": "Nama Lengkap",
+      "email_readonly": "Email (Hanya Baca)",
+      "phone": "Nomor HP",
+      "profession": "Status / Profesi",
+      "institution_uni": "Nama Universitas",
+      "institution_office": "Nama Instansi / Kantor",
+      "province": "Provinsi",
+      "city": "Kota / Kabupaten",
+      "save_btn": "Simpan Perubahan",
+      "success_msg": "Profil berhasil diperbarui!",
+      "error_msg": "Gagal memperbarui data"
+    }
+  },
+  "welcome": {
+    "title": "Lengkapi Profil Anda",
+    "subtitle": "Kami membutuhkan sedikit informasi tambahan sebelum Anda dapat mengakses layanan Invenlaw.",
+    "submit_btn": "Simpan Profil & Lanjutkan"
+  },
+  "features": [
+    { "title": "Template Lengkap", "desc": "30+ template dokumen hukum yang dapat langsung digunakan dan disesuaikan." },
+    { "title": "Dokumen Terstandar", "desc": "Setiap template telah ditinjau dan sesuai dengan peraturan hukum Indonesia." },
+    { "title": "DOCX & PDF", "desc": "Unduh template dalam format Word atau PDF sesuai kebutuhan Anda." },
+    { "title": "Editor Online", "desc": "Edit template langsung di browser tanpa perlu software tambahan." },
+    { "title": "Akses Seumur Hidup", "desc": "Bayar sekali, akses semua template selamanya termasuk update terbaru." },
+    { "title": "Selalu Diperbarui", "desc": "Template diperbarui mengikuti perubahan regulasi dan kebutuhan terkini." }
+  ],
+  "testimonials": {
+    "title": "Kata Mereka",
+    "items": [
+      { "name": "Andi Pratama, S.H.", "role": "Advokat", "text": "Invenlaw sangat membantu pekerjaan saya. Template-nya profesional dan mudah diedit sesuai kebutuhan klien." },
+      { "name": "Sari Dewi", "role": "Pengusaha", "text": "Sebagai pemilik bisnis, saya sering butuh dokumen hukum. Dengan Invenlaw, semuanya jadi lebih mudah dan terjangkau." },
+      { "name": "Dr. Budi Santoso", "role": "Dosen Hukum", "text": "Saya merekomendasikan Invenlaw kepada mahasiswa saya. Template-nya sesuai standar dan sangat edukatif." }
+    ]
+  },
+  "common": {
+    "cta_footer_note": "Satu kali pembayaran • Akses seumur hidup • Garansi 30 hari",
+    "hero_tags": ["30+ Template", "Akses Seumur Hidup", "DOCX & PDF"],
+    "loading": "Memuat..."
+  },
+  "templates": {
+    "hero_badge": "Koleksi Lengkap",
+    "hero_title": "Template Dokumen Hukum",
+    "hero_desc": "Temukan template dokumen hukum profesional yang siap pakai untuk kebutuhan Anda.",
+    "search_placeholder": "Cari template dokumen...",
+    "search_clear": "Hapus",
+    "filter_category": "Kategori",
+    "filter_all": "Semua",
+    "loading": "Memuat template...",
+    "empty_title": "Belum Ada Template",
+    "empty_search_desc": "Tidak ditemukan template untuk \"{query}\". Coba kata kunci lain.",
+    "empty_desc": "Template sedang dalam proses penambahan. Cek kembali nanti atau daftar untuk mendapat notifikasi.",
+    "empty_reset": "Reset Pencarian",
+    "showing": "Menampilkan {count} template",
+    "view_details": "Lihat"
+  },
+  "pricing": {
+    "hero_badge": "Penawaran Terbatas",
+    "hero_title": "Harga yang Jujur",
+    "hero_desc": "Satu paket, semua fitur. Tidak ada biaya tersembunyi atau langganan bulanan.",
+    "card_title": "Akses Seumur Hidup",
+    "card_price_desc": "Bayar sekali, akses selamanya",
+    "card_features": [
+      "Akses semua 30+ template dokumen hukum",
+      "Download format DOCX & PDF",
+      "Editor dokumen online",
+      "Template selalu diperbarui",
+      "Akses seumur hidup tanpa biaya tambahan",
+      "Dukungan via email"
+    ],
+    "card_cta": "Mulai Sekarang",
+    "card_footer": "Pembayaran aman via Midtrans • Garansi 30 hari"
   }
 }

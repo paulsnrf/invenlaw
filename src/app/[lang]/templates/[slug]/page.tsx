@@ -4,6 +4,7 @@ import { useEffect, useState, use } from 'react';
 import Link from 'next/link';
 import Navbar from '@/components/Navbar';
 import Footer from '@/components/Footer';
+import { useDictionary } from '@/components/DictionaryProvider';
 import api from '@/lib/api';
 import {
   FileText,
@@ -55,6 +56,7 @@ export default function TemplateDetailPage({
   params: Promise<{ slug: string }>;
 }) {
   const { slug } = use(params);
+  const { lang } = useDictionary();
   const [template, setTemplate] = useState<Template | null>(null);
   const [related, setRelated] = useState<RelatedTemplate[]>([]);
   const [isSubscribed, setIsSubscribed] = useState(false);
@@ -115,7 +117,7 @@ export default function TemplateDetailPage({
               Template yang Anda cari mungkin telah dihapus atau tidak tersedia.
             </p>
             <Link
-              href="/templates"
+              href={`/${lang}/templates`}
               className="inline-flex items-center gap-2 px-6 py-3 text-sm font-medium rounded-xl border border-white/10 text-white/60 hover:text-white hover:border-white/20 transition-all"
             >
               <ArrowLeft className="w-4 h-4" /> Kembali ke Template
@@ -158,7 +160,7 @@ export default function TemplateDetailPage({
             {/* Breadcrumb */}
             <div className="flex items-center gap-2 text-sm text-white/30 mb-8">
               <Link
-                href="/templates"
+                href={`/${lang}/templates`}
                 className="hover:text-white/60 transition-colors"
               >
                 Template
@@ -251,7 +253,7 @@ export default function TemplateDetailPage({
                           Template ini memerlukan akses Premium untuk diunduh.
                         </p>
                         <Link
-                          href="/pricing"
+                          href={`/${lang}/pricing`}
                           className="flex items-center justify-center gap-2 w-full py-3.5 text-sm font-semibold text-white rounded-xl transition-all hover:-translate-y-0.5"
                           style={{
                             background:
@@ -354,7 +356,7 @@ export default function TemplateDetailPage({
                   Template Terkait
                 </h2>
                 <Link
-                  href="/templates"
+                  href={`/${lang}/templates`}
                   className="text-sm text-orange-400 font-medium flex items-center gap-1 hover:gap-2 transition-all"
                 >
                   Lihat Semua <ArrowRight className="w-4 h-4" />
@@ -364,7 +366,7 @@ export default function TemplateDetailPage({
                 {related.map((t) => (
                   <Link
                     key={t.id}
-                    href={`/templates/${t.slug}`}
+                    href={`/${lang}/templates/${t.slug}`}
                     className="group p-5 rounded-2xl border border-white/[0.06] hover:border-orange-500/20 transition-all hover:-translate-y-1"
                     style={{ background: 'rgba(22,22,22,0.8)' }}
                   >

@@ -18,9 +18,16 @@ model User {
   password      String?
   emailVerified DateTime?
   image         String?
-  role          String    @default("user") // "user" or "admin"
-  createdAt     DateTime  @default(now())
-  updatedAt     DateTime  @updatedAt
+  role             String    @default("user") // "user" or "admin"
+  profileCompleted   Boolean   @default(false)
+  profileCompletedAt DateTime?
+  phoneNumber        String?
+  profession       String?
+  institution      String?
+  province         String?
+  city             String?
+  createdAt        DateTime  @default(now())
+  updatedAt        DateTime  @updatedAt
 
   accounts      Account[]
   sessions      Session[]

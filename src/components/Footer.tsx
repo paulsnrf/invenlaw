@@ -14,9 +14,9 @@ export default function Footer() {
               <Image
                 src="/inven.svg"
                 alt="Invenlaw"
-                width={110}
-                height={110}
-                className="h-[110px] w-auto"
+                width={120}
+                height={120}
+                className="h-[120px] w-auto scale-[2.5] origin-left translate-x-[25px] mb-8"
               />
             </Link>
             <p className="text-xs text-white/40 leading-relaxed">

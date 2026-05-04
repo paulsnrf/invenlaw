@@ -4,7 +4,8 @@
     "templates": "Templates",
     "pricing": "Pricing",
     "login": "Login",
-    "register": "Sign Up Free"
+    "register": "Sign Up Free",
+    "account": "My Account"
   },
   "footer": {
     "desc": "The most complete digital legal document template platform in Indonesia. Pay once, lifetime access.",
@@ -38,5 +39,84 @@
     "cta_title": "Start Protecting Your Business",
     "cta_desc": "Join hundreds of other users who have already used Invenlaw.",
     "cta_btn": "Register Now"
+  },
+  "profile": {
+    "title": "My Account",
+    "subtitle": "Manage your profile information and account settings.",
+    "info_title": "Profile Information",
+    "premium_badge": "Premium Member",
+    "registered_at": "Registered at",
+    "form": {
+      "full_name": "Full Name",
+      "email_readonly": "Email (Read-only)",
+      "phone": "Phone Number",
+      "profession": "Status / Profession",
+      "institution_uni": "University Name",
+      "institution_office": "Office / Agency Name",
+      "province": "Province",
+      "city": "City / Regency",
+      "save_btn": "Save Changes",
+      "success_msg": "Profile updated successfully!",
+      "error_msg": "Failed to update profile"
+    }
+  },
+  "welcome": {
+    "title": "Complete Your Profile",
+    "subtitle": "We need some additional information before you can access Invenlaw services.",
+    "submit_btn": "Save Profile & Continue"
+  },
+  "features": [
+    { "title": "Complete Templates", "desc": "30+ legal document templates that can be immediately used and customized." },
+    { "title": "Standardized Documents", "desc": "Each template has been reviewed and complies with Indonesian legal regulations." },
+    { "title": "DOCX & PDF", "desc": "Download templates in Word or PDF format according to your needs." },
+    { "title": "Online Editor", "desc": "Edit templates directly in the browser without the need for additional software." },
+    { "title": "Lifetime Access", "desc": "Pay once, access all templates forever including the latest updates." },
+    { "title": "Always Updated", "desc": "Templates are updated following regulatory changes and current needs." }
+  ],
+  "testimonials": {
+    "title": "What They Say",
+    "items": [
+      { "name": "Andi Pratama, S.H.", "role": "Advocate", "text": "Invenlaw really helps my work. The templates are professional and easy to edit according to client needs." },
+      { "name": "Sari Dewi", "role": "Entrepreneur", "text": "As a business owner, I often need legal documents. With Invenlaw, everything becomes easier and more affordable." },
+      { "name": "Dr. Budi Santoso", "role": "Law Lecturer", "text": "I recommend Invenlaw to my students. The templates are standard-compliant and very educational." }
+    ]
+  },
+  "common": {
+    "cta_footer_note": "One-time payment • Lifetime access • 30-day guarantee",
+    "hero_tags": ["30+ Templates", "Lifetime Access", "DOCX & PDF"],
+    "loading": "Loading..."
+  },
+  "templates": {
+    "hero_badge": "Full Collection",
+    "hero_title": "Legal Document Templates",
+    "hero_desc": "Find professional legal document templates ready to use for your needs.",
+    "search_placeholder": "Search document templates...",
+    "search_clear": "Clear",
+    "filter_category": "Category",
+    "filter_all": "All",
+    "loading": "Loading templates...",
+    "empty_title": "No Templates Yet",
+    "empty_search_desc": "No templates found for \"{query}\". Try another keyword.",
+    "empty_desc": "Templates are currently being added. Check back later or register to get notified.",
+    "empty_reset": "Reset Search",
+    "showing": "Showing {count} templates",
+    "view_details": "View"
+  },
+  "pricing": {
+    "hero_badge": "Limited Offer",
+    "hero_title": "Honest Pricing",
+    "hero_desc": "One package, all features. No hidden fees or monthly subscriptions.",
+    "card_title": "Lifetime Access",
+    "card_price_desc": "Pay once, access forever",
+    "card_features": [
+      "Access all 30+ legal document templates",
+      "Download DOCX & PDF formats",
+      "Online document editor",
+      "Templates always updated",
+      "Lifetime access with no extra fees",
+      "Email support"
+    ],
+    "card_cta": "Start Now",
+    "card_footer": "Secure payment via Midtrans • 30-day guarantee"
   }
 }

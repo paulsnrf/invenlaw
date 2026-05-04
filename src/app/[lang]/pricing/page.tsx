@@ -3,18 +3,11 @@
 import Link from 'next/link';
 import Navbar from '@/components/Navbar';
 import Footer from '@/components/Footer';
+import { useDictionary } from '@/components/DictionaryProvider';
 import { CheckCircle, ArrowRight, Zap } from 'lucide-react';
 
-const features = [
-  'Akses semua 30+ template dokumen hukum',
-  'Download format DOCX & PDF',
-  'Editor dokumen online',
-  'Template selalu diperbarui',
-  'Akses seumur hidup tanpa biaya tambahan',
-  'Dukungan via email',
-];
-
 export default function PricingPage() {
+  const { lang, dict } = useDictionary();
   const price = 99000;
 
   return (
@@ -26,13 +19,13 @@ export default function PricingPage() {
           <div className="max-w-4xl mx-auto text-center">
             <span className="inline-flex items-center gap-1.5 px-3 py-1 text-xs font-semibold rounded-full mb-6"
               style={{ background: 'rgba(255,107,0,0.1)', color: '#FF8C00', border: '1px solid rgba(255,107,0,0.2)' }}>
-              <Zap className="w-3.5 h-3.5" /> Penawaran Terbatas
+              <Zap className="w-3.5 h-3.5" /> {dict.pricing.hero_badge}
             </span>
-            <h1 className="text-4xl md:text-6xl font-bold mb-4" style={{ fontFamily: 'var(--font-syne)' }}>
-              Harga yang Jujur
+            <h1 className="text-4xl md:text-5xl lg:text-[66px] font-bold mb-4" style={{ fontFamily: 'var(--font-syne)' }}>
+              {dict.pricing.hero_title}
             </h1>
-            <p className="text-white/50 text-lg max-w-xl mx-auto">
-              Satu paket, semua fitur. Tidak ada biaya tersembunyi atau langganan bulanan.
+            <p className="text-white/50 text-base max-w-xl mx-auto">
+              {dict.pricing.hero_desc}
             </p>
 
             {/* Card */}
@@ -46,16 +39,16 @@ export default function PricingPage() {
                   style={{ background: 'radial-gradient(ellipse, rgba(255,107,0,0.15) 0%, transparent 70%)' }} />
 
                 <div className="relative">
-                  <div className="text-sm font-semibold text-orange-400 mb-2">Lifetime Access</div>
+                  <div className="text-sm font-semibold text-orange-400 mb-2">{dict.pricing.card_title}</div>
                   <div className="flex items-end gap-2 mb-1">
                     <span className="text-5xl font-bold" style={{ fontFamily: 'var(--font-syne)' }}>
                       Rp{price.toLocaleString('id-ID')}
                     </span>
                   </div>
-                  <p className="text-xs text-white/30 mb-8">Bayar sekali, akses selamanya</p>
+                  <p className="text-xs text-white/30 mb-8">{dict.pricing.card_price_desc}</p>
 
                   <ul className="space-y-3 mb-8 text-left">
-                    {features.map((f, i) => (
+                    {dict.pricing.card_features.map((f: string, i: number) => (
                       <li key={i} className="flex items-start gap-3 text-sm text-white/70">
                         <CheckCircle className="w-4 h-4 text-orange-400 shrink-0 mt-0.5" />
                         {f}
@@ -63,14 +56,14 @@ export default function PricingPage() {
                     ))}
                   </ul>
 
-                  <Link href="/register"
+                  <Link href={`/${lang}/register`}
                     className="flex items-center justify-center gap-2 w-full py-4 text-base font-semibold text-white rounded-xl transition-all hover:-translate-y-0.5"
                     style={{ background: 'linear-gradient(135deg, #FF6B00, #FF8C00)', boxShadow: '0 4px 30px rgba(255,107,0,0.4)' }}>
-                    Mulai Sekarang <ArrowRight className="w-5 h-5" />
+                    {dict.pricing.card_cta} <ArrowRight className="w-5 h-5" />
                   </Link>
 
                   <p className="text-center text-xs text-white/20 mt-4">
-                    Pembayaran aman via Midtrans • Garansi 30 hari
+                    {dict.pricing.card_footer}
                   </p>
                 </div>
               </div>

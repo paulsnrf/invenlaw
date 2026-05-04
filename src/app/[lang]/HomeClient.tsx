@@ -15,21 +15,6 @@ interface Category {
   active_templates_count?: number;
 }
 
-const features = [
-  { icon: BookOpen, title: 'Template Lengkap', desc: '30+ template dokumen hukum yang dapat langsung digunakan dan disesuaikan.' },
-  { icon: Shield, title: 'Dokumen Terstandar', desc: 'Setiap template telah ditinjau dan sesuai dengan peraturan hukum Indonesia.' },
-  { icon: Download, title: 'DOCX & PDF', desc: 'Unduh template dalam format Word atau PDF sesuai kebutuhan Anda.' },
-  { icon: Star, title: 'Editor Online', desc: 'Edit template langsung di browser tanpa perlu software tambahan.' },
-  { icon: CheckCircle, title: 'Akses Seumur Hidup', desc: 'Bayar sekali, akses semua template selamanya termasuk update terbaru.' },
-  { icon: RefreshCw, title: 'Selalu Diperbarui', desc: 'Template diperbarui mengikuti perubahan regulasi dan kebutuhan terkini.' },
-];
-
-const testimonials = [
-  { name: 'Andi Pratama, S.H.', role: 'Advokat', text: 'Invenlaw sangat membantu pekerjaan saya. Template-nya profesional dan mudah diedit sesuai kebutuhan klien.' },
-  { name: 'Sari Dewi', role: 'Pengusaha', text: 'Sebagai pemilik bisnis, saya sering butuh dokumen hukum. Dengan Invenlaw, semuanya jadi lebih mudah dan terjangkau.' },
-  { name: 'Dr. Budi Santoso', role: 'Dosen Hukum', text: 'Saya merekomendasikan Invenlaw kepada mahasiswa saya. Template-nya sesuai standar dan sangat edukatif.' },
-];
-
 const bgImages = [
   '/invenlaw.webp',
   '/invenlaw-2.webp',
@@ -40,6 +25,8 @@ const bgImages = [
 export default function HomeClient({ dict, lang }: { dict: any, lang: string }) {
   const [categories, setCategories] = useState<Category[]>([]);
   const [currentBg, setCurrentBg] = useState(0);
+
+  const featuresIcons = [BookOpen, Shield, Download, Star, CheckCircle, RefreshCw];
 
   useEffect(() => {
     api.get('/categories').then(r => setCategories(r.data)).catch(() => { });
@@ -78,9 +65,7 @@ export default function HomeClient({ dict, lang }: { dict: any, lang: string }) 
         {/* Glow */}
         <div className="absolute top-1/3 left-1/2 -translate-x-1/2 -translate-y-1/2 w-[600px] h-[600px] rounded-full pointer-events-none opacity-60"
           style={{ background: 'radial-gradient(circle, rgba(255,107,0,0.12) 0%, transparent 70%)' }} />
-        {/* Grid */}
-        <div className="absolute inset-0 pointer-events-none"
-          style={{ backgroundImage: 'linear-gradient(rgba(255,255,255,0.02) 1px, transparent 1px), linear-gradient(90deg, rgba(255,255,255,0.02) 1px, transparent 1px)', backgroundSize: '60px 60px' }} />
+
 
         <div className="relative max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 py-20 lg:py-32 text-center">
           <span className="inline-flex items-center px-3 py-1 text-xs font-semibold rounded-full mb-8"
@@ -88,7 +73,7 @@ export default function HomeClient({ dict, lang }: { dict: any, lang: string }) 
             ⚖️ {dict.home.hero_badge}
           </span>
 
-          <h1 className="text-4xl md:text-6xl lg:text-7xl font-bold leading-tight mb-6"
+          <h1 className="text-3xl md:text-5xl lg:text-[65px] font-bold leading-tight mb-6"
             style={{ fontFamily: 'var(--font-syne)' }}>
             <span style={{ textShadow: '0 2px 8px rgba(0,0,0,0.8)' }}>
               {dict.home.hero_title}{' '}
@@ -98,7 +83,7 @@ export default function HomeClient({ dict, lang }: { dict: any, lang: string }) 
             </span>
           </h1>
 
-          <p className="text-lg text-white/70 max-w-2xl mx-auto mb-10 leading-relaxed"
+          <p className="text-base text-white/70 max-w-2xl mx-auto mb-10 leading-relaxed"
             style={{ textShadow: '0 2px 4px rgba(0,0,0,0.8)' }}>
             {dict.home.hero_desc}
           </p>
@@ -117,7 +102,7 @@ export default function HomeClient({ dict, lang }: { dict: any, lang: string }) 
 
           <div className="mt-14 flex items-center justify-center gap-8 text-sm text-white/70"
             style={{ textShadow: '0 2px 4px rgba(0,0,0,0.8)' }}>
-            {['30+ Template', 'Lifetime Access', 'DOCX & PDF'].map(item => (
+            {dict.common.hero_tags.map((item: string) => (
               <div key={item} className="flex items-center gap-2">
                 <CheckCircle className="w-4 h-4 text-orange-500" />
                 {item}
@@ -136,17 +121,20 @@ export default function HomeClient({ dict, lang }: { dict: any, lang: string }) 
             </h2>
           </div>
           <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-6">
-            {features.map((f, i) => (
-              <div key={i} className="p-8 rounded-2xl border border-white/[0.06] hover:border-orange-500/20 transition-all hover:-translate-y-1"
-                style={{ background: 'rgba(22,22,22,0.8)' }}>
-                <div className="w-12 h-12 rounded-xl flex items-center justify-center mb-5"
-                  style={{ background: 'rgba(255,107,0,0.1)' }}>
-                  <f.icon className="w-6 h-6 text-orange-400" />
+            {dict.features.map((f: any, i: number) => {
+              const Icon = featuresIcons[i];
+              return (
+                <div key={i} className="p-8 rounded-2xl border border-white/[0.06] hover:border-orange-500/20 transition-all hover:-translate-y-1"
+                  style={{ background: 'rgba(22,22,22,0.8)' }}>
+                  <div className="w-12 h-12 rounded-xl flex items-center justify-center mb-5"
+                    style={{ background: 'rgba(255,107,0,0.1)' }}>
+                    <Icon className="w-6 h-6 text-orange-400" />
+                  </div>
+                  <h3 className="text-lg font-semibold mb-2">{f.title}</h3>
+                  <p className="text-sm text-white/40 leading-relaxed">{f.desc}</p>
                 </div>
-                <h3 className="text-lg font-semibold mb-2">{f.title}</h3>
-                <p className="text-sm text-white/40 leading-relaxed">{f.desc}</p>
-              </div>
-            ))}
+              );
+            })}
           </div>
         </div>
       </section>
@@ -194,11 +182,11 @@ export default function HomeClient({ dict, lang }: { dict: any, lang: string }) 
         <div className="max-w-7xl mx-auto">
           <div className="text-center mb-16">
             <h2 className="text-3xl md:text-5xl font-bold mb-4" style={{ fontFamily: 'var(--font-syne)' }}>
-              Kata Mereka
+              {dict.testimonials.title}
             </h2>
           </div>
           <div className="grid grid-cols-1 md:grid-cols-3 gap-6">
-            {testimonials.map((t, i) => (
+            {dict.testimonials.items.map((t: any, i: number) => (
               <div key={i} className="p-6 lg:p-8 rounded-2xl border border-white/[0.06]"
                 style={{ background: 'rgba(22,22,22,0.8)' }}>
                 <div className="flex gap-1 mb-4">
@@ -242,7 +230,7 @@ export default function HomeClient({ dict, lang }: { dict: any, lang: string }) 
                 style={{ background: 'linear-gradient(135deg, #FF6B00, #FF8C00)', boxShadow: '0 4px 30px rgba(255,107,0,0.4)' }}>
                 {dict.home.cta_btn} <ArrowRight className="w-5 h-5" />
               </Link>
-              <p className="mt-4 text-xs text-white/20">Satu kali pembayaran • Akses seumur hidup • Garansi 30 hari</p>
+              <p className="mt-4 text-xs text-white/20">{dict.common.cta_footer_note}</p>
             </div>
           </div>
         </div>

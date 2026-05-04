@@ -5,6 +5,7 @@ import Link from 'next/link';
 import { useSearchParams } from 'next/navigation';
 import Navbar from '@/components/Navbar';
 import Footer from '@/components/Footer';
+import { useDictionary } from '@/components/DictionaryProvider';
 import api from '@/lib/api';
 import {
   Search,
@@ -40,6 +41,7 @@ interface Template {
 }
 
 function TemplatesContent() {
+  const { lang, dict } = useDictionary();
   const searchParams = useSearchParams();
   const initialCategory = searchParams.get('category') || '';
 
@@ -107,15 +109,7 @@ function TemplatesContent() {
               background: 'radial-gradient(circle, rgba(255,107,0,0.1) 0%, transparent 70%)',
             }}
           />
-          {/* Grid */}
-          <div
-            className="absolute inset-0 pointer-events-none"
-            style={{
-              backgroundImage:
-                'linear-gradient(rgba(255,255,255,0.02) 1px, transparent 1px), linear-gradient(90deg, rgba(255,255,255,0.02) 1px, transparent 1px)',
-              backgroundSize: '60px 60px',
-            }}
-          />
+
 
           <div className="relative max-w-7xl mx-auto text-center">
             <span
@@ -126,14 +120,14 @@ function TemplatesContent() {
                 border: '1px solid rgba(255,107,0,0.2)',
               }}
             >
-              <Sparkles className="w-3.5 h-3.5" /> Koleksi Lengkap
+              <Sparkles className="w-3.5 h-3.5" /> {dict.templates.hero_badge}
             </span>
 
             <h1
-              className="text-4xl md:text-6xl font-bold mb-4"
+              className="text-4xl md:text-5xl lg:text-[66px] font-bold mb-4"
               style={{ fontFamily: 'var(--font-syne)' }}
             >
-              Template{' '}
+              {dict.templates.hero_title.split(' ').slice(0, -2).join(' ')}{' '}
               <span
                 style={{
                   background: 'linear-gradient(135deg, #FF6B00, #FF8C00, #FFB74D)',
@@ -141,11 +135,11 @@ function TemplatesContent() {
                   WebkitTextFillColor: 'transparent',
                 }}
               >
-                Dokumen Hukum
+                {dict.templates.hero_title.split(' ').slice(-2).join(' ')}
               </span>
             </h1>
-            <p className="text-white/50 text-lg max-w-xl mx-auto mb-10">
-              Temukan template dokumen hukum profesional yang siap pakai untuk kebutuhan Anda.
+            <p className="text-white/50 text-base max-w-xl mx-auto mb-10">
+              {dict.templates.hero_desc}
             </p>
 
             {/* Search Bar */}
@@ -162,7 +156,7 @@ function TemplatesContent() {
                 <Search className="w-5 h-5 text-white/30 ml-5 shrink-0" />
                 <input
                   type="text"
-                  placeholder="Cari template dokumen..."
+                  placeholder={dict.templates.search_placeholder}
                   value={searchInput}
                   onChange={(e) => setSearchInput(e.target.value)}
                   className="flex-1 bg-transparent text-white placeholder-white/30 px-4 py-4 outline-none text-sm"
@@ -172,7 +166,7 @@ function TemplatesContent() {
                     onClick={() => setSearchInput('')}
                     className="mr-4 text-xs text-white/30 hover:text-white/60 transition-colors"
                   >
-                    Hapus
+                    {dict.templates.search_clear}
                   </button>
                 )}
               </div>
@@ -187,7 +181,7 @@ function TemplatesContent() {
             <div className="mb-10">
               <div className="flex items-center gap-2 mb-4">
                 <Filter className="w-4 h-4 text-white/40" />
-                <span className="text-sm font-medium text-white/40">Kategori</span>
+                <span className="text-sm font-medium text-white/40">{dict.templates.filter_category}</span>
               </div>
               <div className="flex flex-wrap gap-2">
                 <button
@@ -206,7 +200,7 @@ function TemplatesContent() {
                       : 'none',
                   }}
                 >
-                  Semua
+                  {dict.templates.filter_all}
                 </button>
                 {categories.map((cat) => (
                   <button
@@ -244,7 +238,7 @@ function TemplatesContent() {
             {loading ? (
               <div className="flex flex-col items-center justify-center py-32">
                 <Loader2 className="w-8 h-8 text-orange-400 animate-spin mb-4" />
-                <p className="text-sm text-white/30">Memuat template...</p>
+                <p className="text-sm text-white/30">{dict.templates.loading}</p>
               </div>
             ) : templates.length === 0 ? (
               <div className="flex flex-col items-center justify-center py-32">
@@ -258,12 +252,12 @@ function TemplatesContent() {
                   className="text-xl font-bold mb-2"
                   style={{ fontFamily: 'var(--font-syne)' }}
                 >
-                  Belum Ada Template
+                  {dict.templates.empty_title}
                 </h3>
                 <p className="text-sm text-white/40 max-w-sm text-center mb-6">
                   {searchQuery
-                    ? `Tidak ditemukan template untuk "${searchQuery}". Coba kata kunci lain.`
-                    : 'Template sedang dalam proses penambahan. Cek kembali nanti atau daftar untuk mendapat notifikasi.'}
+                    ? dict.templates.empty_search_desc.replace('{query}', searchQuery)
+                    : dict.templates.empty_desc}
                 </p>
                 {searchQuery && (
                   <button
@@ -273,7 +267,7 @@ function TemplatesContent() {
                     }}
                     className="px-6 py-2.5 text-sm font-medium rounded-xl border border-white/10 text-white/60 hover:text-white hover:border-white/20 transition-all"
                   >
-                    Reset Pencarian
+                    {dict.templates.empty_reset}
                   </button>
                 )}
               </div>
@@ -281,7 +275,7 @@ function TemplatesContent() {
               <>
                 <div className="flex items-center justify-between mb-6">
                   <p className="text-sm text-white/40">
-                    Menampilkan <span className="text-white/70 font-medium">{templates.length}</span> template
+                    {dict.templates.showing.replace('{count}', templates.length)}
                   </p>
                 </div>
 
@@ -289,7 +283,7 @@ function TemplatesContent() {
                   {templates.map((template) => (
                     <Link
                       key={template.id}
-                      href={`/templates/${template.slug}`}
+                      href={`/${lang}/templates/${template.slug}`}
                       className="group relative rounded-2xl border border-white/[0.06] overflow-hidden transition-all hover:-translate-y-1 hover:border-orange-500/20"
                       style={{ background: 'rgba(22,22,22,0.8)' }}
                     >
@@ -362,7 +356,7 @@ function TemplatesContent() {
                             </span>
                           </div>
                           <span className="flex items-center gap-1 text-xs font-medium text-orange-400 opacity-0 group-hover:opacity-100 transition-opacity">
-                            Lihat <ArrowRight className="w-3.5 h-3.5" />
+                            {dict.templates.view_details} <ArrowRight className="w-3.5 h-3.5" />
                           </span>
                         </div>
                       </div>
@@ -393,20 +387,20 @@ function TemplatesContent() {
                   className="text-3xl lg:text-4xl font-bold mb-4"
                   style={{ fontFamily: 'var(--font-syne)' }}
                 >
-                  Dapatkan Akses Semua Template
+                  {dict.home.cta_title}
                 </h2>
                 <p className="text-white/50 max-w-lg mx-auto mb-8">
-                  Bayar sekali Rp99.000, akses 30+ template selamanya. Tanpa biaya langganan.
+                  {dict.home.cta_desc}
                 </p>
                 <Link
-                  href="/pricing"
+                  href={`/${lang}/pricing`}
                   className="inline-flex items-center gap-2 px-10 py-4 text-base font-semibold text-white rounded-xl transition-all hover:-translate-y-1"
                   style={{
                     background: 'linear-gradient(135deg, #FF6B00, #FF8C00)',
                     boxShadow: '0 4px 30px rgba(255,107,0,0.4)',
                   }}
                 >
-                  Lihat Harga <ArrowRight className="w-5 h-5" />
+                  {dict.home.cta_btn} <ArrowRight className="w-5 h-5" />
                 </Link>
               </div>
             </div>

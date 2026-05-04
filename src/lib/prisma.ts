@@ -1,9 +1,9 @@
 import { PrismaClient } from '@prisma/client'
+import { PrismaTiDBCloud } from '@tidbcloud/prisma-adapter'
 
 const prismaClientSingleton = () => {
-  return new PrismaClient({
-    accelerateUrl: process.env.DATABASE_URL
-  } as any)
+  const adapter = new PrismaTiDBCloud({ url: process.env.DATABASE_URL! })
+  return new PrismaClient({ adapter })
 }
 
 declare global {

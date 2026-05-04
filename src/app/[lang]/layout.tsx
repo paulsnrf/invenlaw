@@ -19,6 +19,7 @@ import { DictionaryProvider } from "@/components/DictionaryProvider";
 import { i18n } from "@/i18n-config";
 import { getDictionary } from "@/lib/dictionary";
 import type { Locale } from "@/i18n-config";
+import SecurityProvider from "@/components/SecurityProvider";
 
 export async function generateStaticParams() {
   return i18n.locales.map((locale) => ({ lang: locale }));
@@ -39,7 +40,9 @@ export default async function RootLayout({
       <body className="min-h-screen flex flex-col">
         <DictionaryProvider dict={dict} lang={lang}>
           <AuthProvider>
-            {children}
+            <SecurityProvider>
+              {children}
+            </SecurityProvider>
           </AuthProvider>
         </DictionaryProvider>
       </body>
