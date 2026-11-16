@@ -1,6 +1,7 @@
 import type { Metadata } from "next";
 import { Inter, Syne } from "next/font/google";
 import "../globals.css";
+import { SpeedInsights } from '@vercel/speed-insights/next';
 
 const inter = Inter({ subsets: ["latin"], variable: "--font-inter" });
 const syne = Syne({ subsets: ["latin"], variable: "--font-syne" });
@@ -45,6 +46,7 @@ export default async function RootLayout({
             </SecurityProvider>
           </AuthProvider>
         </DictionaryProvider>
+        <SpeedInsights />
       </body>
     </html>
   );
